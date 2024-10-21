@@ -1,16 +1,13 @@
-# これはサンプルの Python スクリプトです。
+from litellm import completion
+from dotenv import load_dotenv
 
-# ⌃R を押して実行するか、ご自身のコードに置き換えてください。
-# ⇧ を2回押す を押すと、クラス/ファイル/ツールウィンドウ/アクション/設定を検索します。
+load_dotenv()
 
+openai_response = completion(
+    model="gpt-4o-mini",
+    messages=[
+        {"content": "こんにちは！お元気ですか？", "role": "user"}
+    ]
+)
 
-def print_hi(name):
-    # スクリプトをデバッグするには以下のコード行でブレークポイントを使用してください。
-    print(f'Hi, {name}')  # ⌘F8を押すとブレークポイントを切り替えます。
-
-
-# ガター内の緑色のボタンを押すとスクリプトを実行します。
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# PyCharm のヘルプは https://www.jetbrains.com/help/pycharm/ を参照してください
+print(openai_response.choices[0].message.content)
